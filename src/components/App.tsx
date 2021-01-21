@@ -15,14 +15,12 @@ type State = {
   type: string;
   loading: boolean;
   movies: (object)[];
-  Search: (object)[];
   errorMessage: string;
 }
 const initialState: State = {
   type: "SEARCH_MOVIES_SUCCESS",
   loading: true,
   movies: [],
-  Search: [],
   errorMessage: '',
 }
 type Response = {  
@@ -58,9 +56,9 @@ const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
   // console.log(initialState, '이니셜 스테이트')
   useEffect(() => {
-      fetch(MOVIE_API_URL)
+      fetch(MOVIE_API_URL) 
         .then(response => response.json())
-        .then((response: State) => {
+        .then((response: Response) => {
           // console.log('처음 렌더링?')
           dispatch({ type: "SEARCH_MOVIES_SUCCESS", loading: false, payload: response.Search})
           // console.log('처음 렌더링 후에 리스폰스 ', response.Search )
